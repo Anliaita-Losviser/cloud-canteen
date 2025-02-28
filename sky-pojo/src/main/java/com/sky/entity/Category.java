@@ -1,9 +1,15 @@
 package com.sky.entity;
 
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -11,33 +17,47 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
+@EntityListeners(AuditingEntityListener.class)
+@Table(name = "category")
 public class Category implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    @Id
+    @GenericGenerator(name = "snowflake-id",strategy = "com.sky.service.impl.IdGenerateServiceImpl")
+    @GeneratedValue(generator = "snowflake-id")
     private Long id;
 
     //类型: 1菜品分类 2套餐分类
+    @Column(name = "type")
     private Integer type;
 
     //分类名称
+    @Column(name = "name", length = 32)
     private String name;
 
     //顺序
+    @Column(name = "sort")
     private Integer sort;
 
     //分类状态 0标识禁用 1表示启用
+    @Column(name = "status")
     private Integer status;
 
-    //创建时间
+    @Column(name = "create_time")
+    @CreatedDate
+    //@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime createTime;
 
-    //更新时间
+    @Column(name = "update_time")
+    @LastModifiedDate
+    //@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime updateTime;
 
-    //创建人
+    @Column(name = "create_user")
     private Long createUser;
 
-    //修改人
+    @Column(name = "update_user")
     private Long updateUser;
 }

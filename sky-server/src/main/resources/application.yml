@@ -20,13 +20,13 @@ spring:
     properties:
       hibernate:
         format_sql: true  # 格式化SQL
-        dialect: org.hibernate.dialect.MySQL8Dialect
+        dialect: org.hibernate.dialect.MySQLDialect
     hibernate:
       ddl-auto: update
       naming:
         # 生成SQL 驼峰命名属性，默认加下划线的情况，下面配置可以去掉下划线。
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-    database-platform: org.hibernate.dialect.MySQL8Dialect
+    database-platform: org.hibernate.dialect.MySQLDialect
 
 mybatis-plus:
   #mapper配置文件
