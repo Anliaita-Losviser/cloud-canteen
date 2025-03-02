@@ -4,8 +4,12 @@
 *.class
 *Test.java
 **/test/
+.DS_Store
 **/.DS_Store
 .DS_Store?
 ._*
 **/._*
 ._*?
+.yml
+**/*.yml
+*.yml?

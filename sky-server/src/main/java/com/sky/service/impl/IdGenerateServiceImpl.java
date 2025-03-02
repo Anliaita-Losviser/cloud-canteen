@@ -4,9 +4,11 @@ import com.sky.config.SnowflakeIdGenerator;
 import com.sky.service.IdGenerateService;
 import org.hibernate.engine.spi.SharedSessionContractImplementor;
 import org.hibernate.id.IdentifierGenerator;
+import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 
+@Service
 public class IdGenerateServiceImpl implements IdGenerateService, IdentifierGenerator {
     @Resource(name = "snowflakeIdGenerator")
     private SnowflakeIdGenerator snowflakeIdGenerator;
