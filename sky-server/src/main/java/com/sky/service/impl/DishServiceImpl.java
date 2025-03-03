@@ -155,6 +155,7 @@ public class DishServiceImpl implements DishService {
         previousDish.setPrice(updatedDish.getPrice());
         previousDish.setImage(updatedDish.getImage());
         previousDish.setDescription(updatedDish.getDescription());
+        previousDish.setUpdateUser(BaseContext.getCurrentId());
         //2.删除口味
         dishFlavorDAO.deleteAllInBatchByDishId(dishDTO.getId());
         //3.重新添加口味
@@ -196,5 +197,15 @@ public class DishServiceImpl implements DishService {
                 }
             }
         }
+    }
+    
+    /**
+     * 根据分类ID查询菜品
+     * @param categoryId
+     * @return
+     */
+    @Override
+    public List<Dish> list(Long categoryId) {
+        return dishDAO.findByCategoryId(categoryId);
     }
 }

@@ -174,6 +174,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         previousEmployee.setIdNumber(updatedEmployee.getIdNumber());
         //previousEmployee.setUpdateTime(LocalDateTime.now());
         previousEmployee.setUpdateUser(BaseContext.getCurrentId());
+        
         log.info("即将更新：{}", previousEmployee);
         employeeDAO.save(previousEmployee);
     }
