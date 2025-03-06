@@ -208,4 +208,28 @@ public class DishServiceImpl implements DishService {
     public List<Dish> list(Long categoryId) {
         return dishDAO.findByCategoryId(categoryId);
     }
+    
+    /**
+     * 条件查询菜品和口味
+     * @param dish
+     * @return
+     */
+    @Override
+    public List<DishVO> listWithFlavor(Dish dish) {
+        List<Dish> dishList = dishMapper.list(dish);
+
+        List<DishVO> dishVOList = new ArrayList<>();
+
+        for (Dish d : dishList) {
+            DishVO dishVO = DishMapStruct.instance.convertToDishVO(d);
+
+            //根据菜品id查询对应的口味
+            List<DishFlavor> flavors = dishFlavorDAO.findByDishId(d.getId());
+
+            dishVO.setFlavors(flavors);
+            dishVOList.add(dishVO);
+        }
+
+        return dishVOList;
+    }
 }

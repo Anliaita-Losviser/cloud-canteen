@@ -20,7 +20,7 @@
     <properties>
         <java.version>17</java.version>
         <lombok>1.18.36</lombok>
-        <fastjson>1.2.76</fastjson>
+        <fastjson>1.2.83</fastjson>
         <commons.lang>2.6</commons.lang>
         <pagehelper>2.1.0</pagehelper>
         <aliyun.sdk.oss>3.17.4</aliyun.sdk.oss>
