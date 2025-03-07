@@ -60,7 +60,7 @@ public class Employee implements Serializable {
     //@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime updateTime;
     
-    @Column(name = "create_user")
+    //@Column(name = "create_user")
     private Long createUser;
 
     @Column(name = "update_user")

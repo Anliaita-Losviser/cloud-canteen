@@ -18,7 +18,7 @@ public class IdGenerateServiceImpl implements IdGenerateService, IdentifierGener
      * @return
      */
     @Override
-    public long generateUserId() {
+    public long generateId() {
         return snowflakeIdGenerator.nextId();
     }
     

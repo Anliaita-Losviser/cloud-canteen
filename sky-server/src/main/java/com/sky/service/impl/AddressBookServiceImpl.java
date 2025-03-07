@@ -4,10 +4,13 @@ import com.sky.context.BaseContext;
 import com.sky.entity.AddressBook;
 import com.sky.mapper.AddressBookMapper;
 import com.sky.service.AddressBookService;
+import com.sky.service.IdGenerateService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import javax.annotation.Resource;
 import java.util.List;
 
 @Service
@@ -15,7 +18,8 @@ import java.util.List;
 public class AddressBookServiceImpl implements AddressBookService {
     @Autowired
     private AddressBookMapper addressBookMapper;
-
+    @Resource(name = "idGenerateServiceImpl")
+    private IdGenerateService idGenerateService;
     /**
      * 条件查询
      *
@@ -32,6 +36,7 @@ public class AddressBookServiceImpl implements AddressBookService {
      * @param addressBook
      */
     public void save(AddressBook addressBook) {
+        addressBook.setId(idGenerateService.generateId());
         addressBook.setUserId(BaseContext.getCurrentId());
         addressBook.setIsDefault(0);
         addressBookMapper.insert(addressBook);
